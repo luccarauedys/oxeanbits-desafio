@@ -1,0 +1,20 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #e3e3e3;
+  color: #242424;
+}
+
+body,
+form,
+input,
+select,
+textarea,
+button {
+  font-family: "Inter", sans-serif;
+  font-size: 1rem;
+}
