@@ -3,12 +3,7 @@ import { TransactionsContext } from "./contexts/TransactionsContext";
 import TransactionsGrid from "./components/TransactionsGrid";
 
 export default function App() {
-  const { isLoading, transactions } = useContext(TransactionsContext);
+  const { isLoading } = useContext(TransactionsContext);
 
-  return (
-    <div>
-      {isLoading && <h1>Carregando...</h1>}
-      {transactions.length > 0 && <TransactionsGrid />}
-    </div>
-  );
+  return <div>{isLoading ? <h1>Carregando...</h1> : <TransactionsGrid />}</div>;
 }

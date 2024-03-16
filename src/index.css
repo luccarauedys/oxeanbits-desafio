@@ -18,3 +18,7 @@ button {
   font-family: "Inter", sans-serif;
   font-size: 1rem;
 }
+
+.k-grid-header th {
+  font-weight: bold !important;
+}
