@@ -5,7 +5,7 @@
 }
 
 body {
-  background-color: #e3e3e3;
+  background-color: #ffffff;
   color: #242424;
 }
 
@@ -21,4 +21,43 @@ button {
 
 .k-grid-header th {
   font-weight: bold !important;
+}
+
+a,
+button {
+  cursor: pointer;
+}
+
+.transaction-form-container {
+  width: 100%;
+  padding: 4rem 1.5rem;
+  background-color: #06163e;
+  color: #ffffff;
+}
+
+.transaction-form {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-rows: auto;
+  grid-gap: 0.5rem;
+  align-items: flex-end;
+}
+
+.transaction-form-item {
+  height: 40px;
+  border: transparent;
+  border-radius: 0.25rem;
+}
+
+button {
+  background-color: #007fff;
+  color: #ffffff;
+  font-weight: 500;
+
+  &:hover {
+    background-color: rgb(50, 147, 243);
+    transition: all ease 1s;
+  }
 }
