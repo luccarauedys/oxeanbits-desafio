@@ -9,24 +9,25 @@ export const TransactionsProvider = ({ children }) => {
   const [transactions, setTransactions] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const data = await getTransactions();
-        setTransactions(data);
-      } catch (error) {
-        console.log(error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
+  const loadTransactions = async () => {
+    try {
+      setIsLoading(true);
+      const data = await getTransactions();
+      setTransactions(data);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
-    fetchData();
+  useEffect(() => {
+    loadTransactions();
   }, []);
 
   return (
     <TransactionsContext.Provider
-      value={{ isLoading, transactions, setTransactions }}
+      value={{ isLoading, transactions, setTransactions, loadTransactions }}
     >
       {children}
     </TransactionsContext.Provider>

@@ -12,7 +12,7 @@ import { deleteTransaction } from "services/api";
 import styles from "components/TransactionsGrid/TransactionsGrid.module.css";
 
 export default function TransactionsGrid() {
-  const { transactions } = useContext(TransactionsContext);
+  const { transactions, loadTransactions } = useContext(TransactionsContext);
 
   const createDataState = (dataState) => {
     return {
@@ -51,13 +51,20 @@ export default function TransactionsGrid() {
 
   const CustomDeleteIconCell = (props) => {
     const handleDelete = async () => {
+      const confirmation = window.confirm(
+        "Tem certeza que deseja deletar essa transação?"
+      );
+
+      if (confirmation === false) return;
+
       try {
         await deleteTransaction(props.dataItem.id);
         alert("Deletado com sucesso!");
-        window.location.reload();
+        loadTransactions();
       } catch (error) {
         console.log(error);
         alert("Ocorreu um erro inesperado. Por favor, tente novamente.");
+        loadTransactions();
       }
     };
 

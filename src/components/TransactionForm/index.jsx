@@ -1,11 +1,14 @@
+import { useContext, useState } from "react";
 import { DatePicker } from "@progress/kendo-react-dateinputs";
 import { DropDownList } from "@progress/kendo-react-dropdowns";
 import { Input } from "@progress/kendo-react-inputs";
-import React, { useState } from "react";
+import { TransactionsContext } from "contexts/TransactionsContext";
 import { createTransaction } from "services/api";
 import styles from "components/TransactionForm/TransactionForm.module.css";
 
 export default function TransactionForm() {
+  const { loadTransactions } = useContext(TransactionsContext);
+
   const [transactionData, setTransactionData] = useState({
     description: "",
     value: "",
@@ -17,23 +20,26 @@ export default function TransactionForm() {
     setTransactionData({ ...transactionData, [key]: value });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
     const { description, value, type, date } = transactionData;
 
-    if (description && type && value && date) {
-      transactionData.value = Number(value);
+    if (!description || !value || !type || !date) {
+      return alert(
+        "Preencha todos os campos para registrar uma nova transação."
+      );
+    }
 
-      try {
-        createTransaction(transactionData);
-        alert("Transação registrada com sucesso!");
-        window.location.reload();
-      } catch (error) {
-        console.log(error);
-        alert(
-          "Ocorreu um erro inesperado. Por favor, tente novamente mais tarde."
-        );
-      }
+    transactionData.value = Number(value);
+    try {
+      await createTransaction(transactionData);
+      alert("Transação registrada com sucesso!");
+      loadTransactions();
+    } catch (error) {
+      console.log(error);
+      alert("Ocorreu um erro. Por favor, tente novamente mais tarde.");
+      loadTransactions();
     }
   };
 
