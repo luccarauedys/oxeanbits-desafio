@@ -24,6 +24,8 @@ export default function TransactionForm() {
     if (description && type && value && date) {
       const URL = process.env.REACT_APP_API_URL;
 
+      transactionData.value = Number(value);
+
       fetch(URL, {
         method: "POST",
         headers: { "content-type": "application/json" },

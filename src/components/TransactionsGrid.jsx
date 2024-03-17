@@ -5,6 +5,9 @@ import { ColumnMenu, ColumnMenuCheckboxFilter } from "./ColumnMenu";
 import { TransactionsContext } from "../contexts/TransactionsContext";
 import { formatCurrency } from "../utils/currencyFormatter";
 import { formatDateFromInput } from "../utils/dateFormatter";
+import { Button } from "@progress/kendo-react-buttons";
+import { SvgIcon } from "@progress/kendo-react-common";
+import { trashIcon } from "@progress/kendo-svg-icons";
 
 export default function TransactionsGrid() {
   const { transactions } = useContext(TransactionsContext);
@@ -43,6 +46,36 @@ export default function TransactionsGrid() {
     return <td>{formatDateFromInput(props.dataItem.date)}</td>;
   };
 
+  const CustomDeleteIconCell = (props) => {
+    const handleDelete = () => {
+      console.log("Deletar linha", props.dataItem);
+
+      const URL = process.env.REACT_APP_API_URL;
+
+      fetch(`${URL}/${props.dataItem.id}`, {
+        method: "DELETE",
+      })
+        .then((res) => {
+          if (res.ok) {
+            return alert("Deletado com sucesso!");
+          }
+          alert("Ocorreu um erro inesperado. Por favor, tente novamente.");
+        })
+        .then((_) => window.location.reload())
+        .catch((error) => {
+          alert("Ocorreu um erro inesperado. Por favor, tente novamente.");
+        });
+    };
+
+    return (
+      <td>
+        <Button onClick={handleDelete}>
+          <SvgIcon icon={trashIcon} color="#ea4856" />
+        </Button>
+      </td>
+    );
+  };
+
   return (
     <Grid
       data={result}
@@ -63,7 +96,6 @@ export default function TransactionsGrid() {
         title="Valor"
         columnMenu={ColumnMenu}
         cell={CustomValueCell}
-        sortable={false}
       />
       <GridColumn
         field="type"
@@ -74,6 +106,13 @@ export default function TransactionsGrid() {
         field="date"
         title="Data da transação"
         cell={CustomDateCell}
+      />
+      <GridColumn
+        title=""
+        cell={CustomDeleteIconCell}
+        width={60}
+        filterable={false}
+        sortable={false}
       />
     </Grid>
   );
