@@ -1,25 +1,31 @@
 import { useContext } from "react";
-import { TransactionsContext } from "./contexts/TransactionsContext";
-import TransactionsGrid from "./components/TransactionsGrid";
-import TransactionForm from "./components/TransactionForm";
-import Summary from "./components/Summary";
+import { Loader } from "@progress/kendo-react-indicators";
+import { TransactionsContext } from "contexts/TransactionsContext";
+import TransactionsGrid from "components/TransactionsGrid";
+import TransactionForm from "components/TransactionForm";
+import Summary from "components/Summary";
+import styles from "App.module.css";
 
 export default function App() {
   const { isLoading } = useContext(TransactionsContext);
 
-  return (
-    <div>
-      {isLoading ? (
-        <h1>Carregando...</h1>
-      ) : (
-        <div>
-          <Summary />
-          <TransactionForm />
-          <div style={{ maxWidth: "1000px", margin: "0 auto" }}>
-            <TransactionsGrid />
-          </div>
-        </div>
-      )}
-    </div>
-  );
+  const SpinnerLoader = () => {
+    return (
+      <div className={styles.loader}>
+        <Loader size="large" type="converging-spinner" />
+      </div>
+    );
+  };
+
+  const HomePage = () => {
+    return (
+      <>
+        <Summary />
+        <TransactionForm />
+        <TransactionsGrid />
+      </>
+    );
+  };
+
+  return isLoading ? <SpinnerLoader /> : <HomePage />;
 }

@@ -16,69 +16,10 @@ select,
 textarea,
 button {
   font-family: "Inter", sans-serif;
-  font-size: 1rem;
-}
-
-.k-grid-header th {
-  font-weight: bold !important;
+  font-size: 1rem !important;
 }
 
 a,
 button {
   cursor: pointer;
-}
-
-.transaction-form-container {
-  width: 100%;
-  padding: 4rem 2.5rem;
-  background-color: #141414;
-  color: #ffffff;
-}
-
-.transaction-form-header {
-  max-width: 1000px;
-  margin: 0 auto 2rem;
-  text-align: center;
-}
-
-.transaction-form {
-  max-width: 1000px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  grid-template-rows: auto;
-  grid-gap: 1rem;
-  align-items: flex-end;
-}
-
-.transaction-form-item {
-  height: 40px;
-  border: transparent;
-  border-radius: 0.25rem;
-}
-
-button {
-  background-color: #14bc6e;
-  color: #ffffff;
-  font-weight: 500;
-
-  &:hover {
-    background-color: #2fd387;
-    transition: all ease 1s;
-  }
-}
-
-.summary-container {
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 2.5rem;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 1rem;
-}
-
-.summary-container > div {
-  min-width: 200px;
-  flex: 1;
 }

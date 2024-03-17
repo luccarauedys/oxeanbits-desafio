@@ -1,0 +1,15 @@
+.loader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  div {
+    color: #14bc6e;
+  }
+}
+
+.grid {
+  max-width: 1000px;
+  margin: 0 auto;
+}

@@ -3,7 +3,7 @@ import {
   GridColumnMenuCheckboxFilter,
 } from "@progress/kendo-react-grid";
 import { useContext } from "react";
-import { TransactionsContext } from "../contexts/TransactionsContext";
+import { TransactionsContext } from "../../contexts/TransactionsContext";
 
 export const ColumnMenu = (props) => {
   return (

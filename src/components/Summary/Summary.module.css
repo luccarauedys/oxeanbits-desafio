@@ -1,0 +1,14 @@
+.container {
+  max-width: calc(1000px + 5rem);
+  margin: 0 auto;
+  padding: 2.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.container > div {
+  min-width: 200px;
+  flex: 1;
+}

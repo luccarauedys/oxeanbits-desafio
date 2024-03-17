@@ -1,0 +1,28 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  color: #ffffff;
+  padding: 2rem 1rem;
+  font-size: 1rem;
+}
+
+.container > div:first-child {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-weight: 500;
+}
+
+.green {
+  background-color: #14bc6e;
+}
+
+.red {
+  background-color: #ea4856;
+}
+
+.black {
+  background-color: #141414;
+}

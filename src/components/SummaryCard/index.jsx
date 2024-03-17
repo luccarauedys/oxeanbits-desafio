@@ -1,19 +1,11 @@
 import { Card } from "@progress/kendo-react-layout";
 import { SvgIcon } from "@progress/kendo-react-common";
+import styles from "components/SummaryCard/SummaryCard.module.css";
 
 export default function SummaryCard({ title, value, bgColor, icon }) {
-  const cardStyles = {
-    display: "flex",
-    flexDirection: "row",
-    flexWrap: "wrap",
-    background: bgColor || "#141414",
-    color: "#FFFFFF",
-    padding: "2rem 1rem",
-  };
-
   return (
-    <Card style={cardStyles}>
-      <div style={{ flex: 1 }}>
+    <Card className={`${styles.container} ${styles[bgColor]} `}>
+      <div>
         <h3>{title}</h3>
         <p>{value}</p>
       </div>

@@ -2,7 +2,8 @@ import { DatePicker } from "@progress/kendo-react-dateinputs";
 import { DropDownList } from "@progress/kendo-react-dropdowns";
 import { Input } from "@progress/kendo-react-inputs";
 import React, { useState } from "react";
-import { createTransaction } from "../services/api";
+import { createTransaction } from "services/api";
+import styles from "components/TransactionForm/TransactionForm.module.css";
 
 export default function TransactionForm() {
   const [transactionData, setTransactionData] = useState({
@@ -14,12 +15,10 @@ export default function TransactionForm() {
 
   const handleInputChange = (key, value) => {
     setTransactionData({ ...transactionData, [key]: value });
-    console.log(value);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     const { description, value, type, date } = transactionData;
 
     if (description && type && value && date) {
@@ -39,11 +38,11 @@ export default function TransactionForm() {
   };
 
   return (
-    <div className="transaction-form-container">
-      <div className="transaction-form-header">
+    <div className={styles.container}>
+      <div className={styles.header}>
         <h3>Registre uma nova transação:</h3>
       </div>
-      <form onSubmit={handleSubmit} className="transaction-form">
+      <form onSubmit={handleSubmit} className={styles.form}>
         <div>
           <label htmlFor="description">Descrição:</label>
           <Input
@@ -51,7 +50,7 @@ export default function TransactionForm() {
             type="text"
             value={transactionData.description}
             onChange={(e) => handleInputChange("description", e.target.value)}
-            className="transaction-form-item"
+            className={styles.input}
           />
         </div>
         <div>
@@ -61,7 +60,7 @@ export default function TransactionForm() {
             type="number"
             value={transactionData.value}
             onChange={(e) => handleInputChange("value", e.target.value)}
-            className="transaction-form-item"
+            className={styles.input}
           />
         </div>
         <div>
@@ -71,7 +70,7 @@ export default function TransactionForm() {
             data={["Entrada", "Saída"]}
             value={transactionData.type}
             onChange={(e) => handleInputChange("type", e.target.value)}
-            className="transaction-form-item"
+            className={styles.input}
           />
         </div>
         <div>
@@ -80,13 +79,11 @@ export default function TransactionForm() {
             id="date"
             value={transactionData.date}
             onChange={(e) => handleInputChange("date", e.target.value)}
-            className="transaction-form-item"
+            className={styles.input}
             format={"dd/MM/yyyy"}
           />
         </div>
-        <button type="submit" className="transaction-form-item">
-          Registrar
-        </button>
+        <button type="submit">Registrar</button>
       </form>
     </div>
   );

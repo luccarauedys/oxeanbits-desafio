@@ -1,0 +1,52 @@
+.container {
+  width: 100%;
+  padding: 4rem 2.5rem;
+  background-color: #141414;
+  color: #ffffff;
+}
+
+.header {
+  max-width: 1000px;
+  margin: 0 auto 2rem;
+  text-align: center;
+
+  h3 {
+    font-weight: 500;
+  }
+}
+
+.form {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-rows: auto;
+  grid-gap: 1rem;
+  align-items: flex-end;
+
+  button {
+    height: 40px;
+    border: transparent;
+    border-radius: 0.25rem;
+
+    background-color: #14bc6e;
+    color: #ffffff;
+    font-weight: 500;
+
+    &:hover {
+      background-color: #2fd387;
+      transition: all ease 1s;
+    }
+  }
+}
+
+.input {
+  height: 40px;
+  border: transparent;
+  border-radius: 0.25rem;
+  margin-top: 0.5rem;
+
+  &:focus {
+    border: 2px solid #1aff94;
+  }
+}
