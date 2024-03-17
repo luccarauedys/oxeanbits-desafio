@@ -1,4 +1,3 @@
-import { SvgIcon } from "@progress/kendo-react-common";
 import SummaryCard from "./SummaryCard";
 import { caretAltDownIcon, caretAltUpIcon } from "@progress/kendo-svg-icons";
 import { useContext } from "react";
@@ -11,37 +10,26 @@ export default function Summary() {
   const { inflows, outflows, balance } = calcBalance(transactions);
   const negativeBalance = balance < 0;
 
-  console.log(transactions);
-
   return (
     <div className="summary-container">
       <SummaryCard
         title={"Entradas"}
+        icon={caretAltUpIcon}
         value={formatCurrency(inflows)}
         bgColor={"#14bc6e"}
-      >
-        <SvgIcon icon={caretAltUpIcon} />
-      </SummaryCard>
-
+      />
       <SummaryCard
         title={"Saídas"}
+        icon={caretAltDownIcon}
         value={formatCurrency(outflows)}
         bgColor={"#ea4856"}
-      >
-        <SvgIcon icon={caretAltDownIcon} />
-      </SummaryCard>
-
+      />
       <SummaryCard
         title={"Saldo"}
+        icon={negativeBalance ? caretAltDownIcon : caretAltUpIcon}
         value={formatCurrency(balance)}
         bgColor={negativeBalance ? "#960c0c" : "#0a6d3f"}
-      >
-        {negativeBalance ? (
-          <SvgIcon icon={caretAltDownIcon} />
-        ) : (
-          <SvgIcon icon={caretAltUpIcon} />
-        )}
-      </SummaryCard>
+      />
     </div>
   );
 }

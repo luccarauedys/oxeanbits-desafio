@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useState } from "react";
 import { createContext } from "react";
+import { getTransactions } from "../services/api";
 
 export const TransactionsContext = createContext([]);
 
@@ -9,17 +10,19 @@ export const TransactionsProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    const URL = process.env.REACT_APP_API_URL;
-
-    setIsLoading(true);
-
-    fetch(URL)
-      .then((res) => res.json())
-      .then((json) => {
-        setTransactions(json);
+    const fetchData = async () => {
+      try {
+        setIsLoading(true);
+        const data = await getTransactions();
+        setTransactions(data);
+      } catch (error) {
+        console.log(error);
+      } finally {
         setIsLoading(false);
-      })
-      .catch((err) => console.log(err));
+      }
+    };
+
+    fetchData();
   }, []);
 
   return (

@@ -2,6 +2,7 @@ import { DatePicker } from "@progress/kendo-react-dateinputs";
 import { DropDownList } from "@progress/kendo-react-dropdowns";
 import { Input } from "@progress/kendo-react-inputs";
 import React, { useState } from "react";
+import { createTransaction } from "../services/api";
 
 export default function TransactionForm() {
   const [transactionData, setTransactionData] = useState({
@@ -22,26 +23,18 @@ export default function TransactionForm() {
     const { description, value, type, date } = transactionData;
 
     if (description && type && value && date) {
-      const URL = process.env.REACT_APP_API_URL;
-
       transactionData.value = Number(value);
 
-      fetch(URL, {
-        method: "POST",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify(transactionData),
-      })
-        .then((res) => {
-          if (res.ok) {
-            alert("Transação registrada com sucesso!");
-            return window.location.reload();
-          }
-
-          alert("Ocorreu um erro inesperado. Por favor, tente novamente.");
-        })
-        .catch((err) => {
-          alert("Ocorreu um erro inesperado. Por favor, tente novamente.");
-        });
+      try {
+        createTransaction(transactionData);
+        alert("Transação registrada com sucesso!");
+        window.location.reload();
+      } catch (error) {
+        console.log(error);
+        alert(
+          "Ocorreu um erro inesperado. Por favor, tente novamente mais tarde."
+        );
+      }
     }
   };
 

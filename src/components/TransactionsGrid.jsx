@@ -8,6 +8,7 @@ import { formatDateFromInput } from "../utils/dateFormatter";
 import { Button } from "@progress/kendo-react-buttons";
 import { SvgIcon } from "@progress/kendo-react-common";
 import { trashIcon } from "@progress/kendo-svg-icons";
+import { deleteTransaction } from "../services/api";
 
 export default function TransactionsGrid() {
   const { transactions } = useContext(TransactionsContext);
@@ -47,24 +48,15 @@ export default function TransactionsGrid() {
   };
 
   const CustomDeleteIconCell = (props) => {
-    const handleDelete = () => {
-      console.log("Deletar linha", props.dataItem);
-
-      const URL = process.env.REACT_APP_API_URL;
-
-      fetch(`${URL}/${props.dataItem.id}`, {
-        method: "DELETE",
-      })
-        .then((res) => {
-          if (res.ok) {
-            return alert("Deletado com sucesso!");
-          }
-          alert("Ocorreu um erro inesperado. Por favor, tente novamente.");
-        })
-        .then((_) => window.location.reload())
-        .catch((error) => {
-          alert("Ocorreu um erro inesperado. Por favor, tente novamente.");
-        });
+    const handleDelete = async () => {
+      try {
+        await deleteTransaction(props.dataItem.id);
+        alert("Deletado com sucesso!");
+        window.location.reload();
+      } catch (error) {
+        console.log(error);
+        alert("Ocorreu um erro inesperado. Por favor, tente novamente.");
+      }
     };
 
     return (
