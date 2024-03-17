@@ -6,7 +6,7 @@
 
 body {
   background-color: #ffffff;
-  color: #242424;
+  color: #141414;
 }
 
 body,
@@ -30,9 +30,15 @@ button {
 
 .transaction-form-container {
   width: 100%;
-  padding: 4rem 1.5rem;
-  background-color: #06163e;
+  padding: 4rem 2.5rem;
+  background-color: #141414;
   color: #ffffff;
+}
+
+.transaction-form-header {
+  max-width: 1000px;
+  margin: 0 auto 2rem;
+  text-align: center;
 }
 
 .transaction-form {
@@ -41,7 +47,7 @@ button {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   grid-template-rows: auto;
-  grid-gap: 0.5rem;
+  grid-gap: 1rem;
   align-items: flex-end;
 }
 
@@ -52,12 +58,27 @@ button {
 }
 
 button {
-  background-color: #007fff;
+  background-color: #14bc6e;
   color: #ffffff;
   font-weight: 500;
 
   &:hover {
-    background-color: rgb(50, 147, 243);
+    background-color: #2fd387;
     transition: all ease 1s;
   }
+}
+
+.summary-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.summary-container > div {
+  min-width: 200px;
+  flex: 1;
 }

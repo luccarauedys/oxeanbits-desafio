@@ -51,6 +51,7 @@ export default function TransactionsGrid() {
       sortable
       pageable
       pageSize={10}
+      style={{ marginTop: "3rem", maxHeight: "300px" }}
     >
       <GridColumn
         field="description"
@@ -62,6 +63,7 @@ export default function TransactionsGrid() {
         title="Valor"
         columnMenu={ColumnMenu}
         cell={CustomValueCell}
+        sortable={false}
       />
       <GridColumn
         field="type"

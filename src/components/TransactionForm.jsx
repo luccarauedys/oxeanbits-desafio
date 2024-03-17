@@ -13,6 +13,7 @@ export default function TransactionForm() {
 
   const handleInputChange = (key, value) => {
     setTransactionData({ ...transactionData, [key]: value });
+    console.log(value);
   };
 
   const handleSubmit = (e) => {
@@ -29,7 +30,10 @@ export default function TransactionForm() {
         body: JSON.stringify(transactionData),
       })
         .then((res) => {
-          if (res.ok) return alert("Transação registrada com sucesso!");
+          if (res.ok) {
+            alert("Transação registrada com sucesso!");
+            return window.location.reload();
+          }
 
           alert("Ocorreu um erro inesperado. Por favor, tente novamente.");
         })
@@ -41,6 +45,9 @@ export default function TransactionForm() {
 
   return (
     <div className="transaction-form-container">
+      <div className="transaction-form-header">
+        <h3>Registre uma nova transação:</h3>
+      </div>
       <form onSubmit={handleSubmit} className="transaction-form">
         <div>
           <label htmlFor="description">Descrição:</label>
@@ -79,6 +86,7 @@ export default function TransactionForm() {
             value={transactionData.date}
             onChange={(e) => handleInputChange("date", e.target.value)}
             className="transaction-form-item"
+            format={"dd/MM/yyyy"}
           />
         </div>
         <button type="submit" className="transaction-form-item">
