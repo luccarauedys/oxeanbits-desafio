@@ -1,4 +1,4 @@
-import { render } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import { TransactionsContext } from "contexts/TransactionsContext";
 import TransactionForm from "components/TransactionForm";
 
@@ -19,5 +19,17 @@ describe("TransactionForm", () => {
         <TransactionForm />
       </TransactionsContext.Provider>
     );
+  });
+
+  it("should handle input change", () => {
+    render(
+      <TransactionsContext.Provider value={{ loadTransactions }}>
+        <TransactionForm />
+      </TransactionsContext.Provider>
+    );
+
+    const input = screen.getByLabelText("Descrição:");
+    fireEvent.change(input, { target: { value: "Compras" } });
+    expect(input.value).toBe("Compras");
   });
 });
