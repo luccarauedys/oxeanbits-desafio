@@ -1,7 +1,7 @@
-import { useEffect } from "react";
-import { useState } from "react";
-import { createContext } from "react";
-import { getTransactions } from "services/api";
+import { useEffect } from 'react';
+import { useState } from 'react';
+import { createContext } from 'react';
+import { getTransactions } from 'services/api';
 
 export const TransactionsContext = createContext([]);
 

@@ -1,6 +1,6 @@
-import { format } from "date-fns";
+import { format } from 'date-fns';
 
 export const formatDateFromInput = (inputDate) => {
   const date = new Date(inputDate);
-  return format(date, "dd/MM/yyyy");
+  return format(date, 'dd/MM/yyyy');
 };

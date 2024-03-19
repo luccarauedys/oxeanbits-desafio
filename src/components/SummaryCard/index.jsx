@@ -1,6 +1,6 @@
-import { Card } from "@progress/kendo-react-layout";
-import { SvgIcon } from "@progress/kendo-react-common";
-import styles from "components/SummaryCard/SummaryCard.module.css";
+import { Card } from '@progress/kendo-react-layout';
+import { SvgIcon } from '@progress/kendo-react-common';
+import styles from 'components/SummaryCard/SummaryCard.module.css';
 
 export default function SummaryCard({ title, value, bgColor, icon }) {
   return (

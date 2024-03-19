@@ -1,15 +1,15 @@
-import { useContext, useState } from "react";
-import { Grid, GridColumn } from "@progress/kendo-react-grid";
-import { process } from "@progress/kendo-data-query";
-import { ColumnMenu, ColumnMenuCheckboxFilter } from "components/ColumnMenu";
-import { TransactionsContext } from "contexts/TransactionsContext";
-import { formatCurrency } from "utils/currencyFormatter";
-import { formatDateFromInput } from "utils/dateFormatter";
-import { Button } from "@progress/kendo-react-buttons";
-import { SvgIcon } from "@progress/kendo-react-common";
-import { trashIcon } from "@progress/kendo-svg-icons";
-import { deleteTransaction } from "services/api";
-import styles from "components/TransactionsGrid/TransactionsGrid.module.css";
+import { useContext, useState } from 'react';
+import { Grid, GridColumn } from '@progress/kendo-react-grid';
+import { process } from '@progress/kendo-data-query';
+import { ColumnMenu, ColumnMenuCheckboxFilter } from 'components/ColumnMenu';
+import { TransactionsContext } from 'contexts/TransactionsContext';
+import { formatCurrency } from 'utils/currencyFormatter';
+import { formatDateFromInput } from 'utils/dateFormatter';
+import { Button } from '@progress/kendo-react-buttons';
+import { SvgIcon } from '@progress/kendo-react-common';
+import { trashIcon } from '@progress/kendo-svg-icons';
+import { deleteTransaction } from 'services/api';
+import styles from 'components/TransactionsGrid/TransactionsGrid.module.css';
 
 export default function TransactionsGrid() {
   const { transactions, loadTransactions } = useContext(TransactionsContext);
@@ -26,8 +26,8 @@ export default function TransactionsGrid() {
     skip: 0,
     sort: [
       {
-        field: "date",
-        dir: "desc",
+        field: 'date',
+        dir: 'desc',
       },
     ],
   });
@@ -52,18 +52,18 @@ export default function TransactionsGrid() {
   const CustomDeleteIconCell = (props) => {
     const handleDelete = async () => {
       const confirmation = window.confirm(
-        "Tem certeza que deseja deletar essa transação?"
+        'Tem certeza que deseja deletar essa transação?'
       );
 
       if (confirmation === false) return;
 
       try {
         await deleteTransaction(props.dataItem.id);
-        alert("Deletado com sucesso!");
+        alert('Deletado com sucesso!');
         loadTransactions();
       } catch (error) {
         console.log(error);
-        alert("Ocorreu um erro inesperado. Por favor, tente novamente.");
+        alert('Ocorreu um erro inesperado. Por favor, tente novamente.');
         loadTransactions();
       }
     };

@@ -1,18 +1,18 @@
-import { useContext, useState } from "react";
-import { DatePicker } from "@progress/kendo-react-dateinputs";
-import { DropDownList } from "@progress/kendo-react-dropdowns";
-import { Input } from "@progress/kendo-react-inputs";
-import { TransactionsContext } from "contexts/TransactionsContext";
-import { createTransaction } from "services/api";
-import styles from "components/TransactionForm/TransactionForm.module.css";
+import { useContext, useState } from 'react';
+import { DatePicker } from '@progress/kendo-react-dateinputs';
+import { DropDownList } from '@progress/kendo-react-dropdowns';
+import { Input } from '@progress/kendo-react-inputs';
+import { TransactionsContext } from 'contexts/TransactionsContext';
+import { createTransaction } from 'services/api';
+import styles from 'components/TransactionForm/TransactionForm.module.css';
 
 export default function TransactionForm() {
   const { loadTransactions } = useContext(TransactionsContext);
 
   const [transactionData, setTransactionData] = useState({
-    description: "",
-    value: "",
-    type: "",
+    description: '',
+    value: '',
+    type: '',
     date: new Date(),
   });
 
@@ -27,18 +27,18 @@ export default function TransactionForm() {
 
     if (!description || !value || !type || !date) {
       return alert(
-        "Preencha todos os campos para registrar uma nova transação."
+        'Preencha todos os campos para registrar uma nova transação.'
       );
     }
 
     transactionData.value = Number(value);
     try {
       await createTransaction(transactionData);
-      alert("Transação registrada com sucesso!");
+      alert('Transação registrada com sucesso!');
       loadTransactions();
     } catch (error) {
       console.log(error);
-      alert("Ocorreu um erro. Por favor, tente novamente mais tarde.");
+      alert('Ocorreu um erro. Por favor, tente novamente mais tarde.');
       loadTransactions();
     }
   };
@@ -55,7 +55,7 @@ export default function TransactionForm() {
             id="description"
             type="text"
             value={transactionData.description}
-            onChange={(e) => handleInputChange("description", e.target.value)}
+            onChange={(e) => handleInputChange('description', e.target.value)}
             className={styles.input}
           />
         </div>
@@ -65,7 +65,7 @@ export default function TransactionForm() {
             id="value"
             type="number"
             value={transactionData.value}
-            onChange={(e) => handleInputChange("value", e.target.value)}
+            onChange={(e) => handleInputChange('value', e.target.value)}
             className={styles.input}
           />
         </div>
@@ -73,9 +73,9 @@ export default function TransactionForm() {
           <label htmlFor="type">Tipo:</label>
           <DropDownList
             id="type"
-            data={["Entrada", "Saída"]}
+            data={['Entrada', 'Saída']}
             value={transactionData.type}
-            onChange={(e) => handleInputChange("type", e.target.value)}
+            onChange={(e) => handleInputChange('type', e.target.value)}
             className={styles.input}
           />
         </div>
@@ -84,9 +84,9 @@ export default function TransactionForm() {
           <DatePicker
             id="date"
             value={transactionData.date}
-            onChange={(e) => handleInputChange("date", e.target.value)}
+            onChange={(e) => handleInputChange('date', e.target.value)}
             className={styles.input}
-            format={"dd/MM/yyyy"}
+            format={'dd/MM/yyyy'}
           />
         </div>
         <button type="submit">Registrar</button>

@@ -1,9 +1,9 @@
 import {
   GridColumnMenuFilter,
   GridColumnMenuCheckboxFilter,
-} from "@progress/kendo-react-grid";
-import { useContext } from "react";
-import { TransactionsContext } from "../../contexts/TransactionsContext";
+} from '@progress/kendo-react-grid';
+import { useContext } from 'react';
+import { TransactionsContext } from '../../contexts/TransactionsContext';
 
 export const ColumnMenu = (props) => {
   return (

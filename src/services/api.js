@@ -8,8 +8,8 @@ export const getTransactions = async () => {
 
 export const createTransaction = async (transactionData) => {
   const response = await fetch(`${URL}/transactions`, {
-    method: "POST",
-    headers: { "content-type": "application/json" },
+    method: 'POST',
+    headers: { 'content-type': 'application/json' },
     body: JSON.stringify(transactionData),
   });
   return response;
@@ -17,7 +17,7 @@ export const createTransaction = async (transactionData) => {
 
 export const deleteTransaction = async (transactionId) => {
   const response = await fetch(`${URL}/transactions/${transactionId}`, {
-    method: "DELETE",
+    method: 'DELETE',
   });
   return response;
 };

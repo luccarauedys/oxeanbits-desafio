@@ -1,10 +1,10 @@
-import SummaryCard from "components/SummaryCard";
-import { caretAltDownIcon, caretAltUpIcon } from "@progress/kendo-svg-icons";
-import { useContext } from "react";
-import { TransactionsContext } from "contexts/TransactionsContext";
-import { calcBalance } from "utils/calcBalance";
-import { formatCurrency } from "utils/currencyFormatter";
-import styles from "components/Summary/Summary.module.css";
+import SummaryCard from 'components/SummaryCard';
+import { caretAltDownIcon, caretAltUpIcon } from '@progress/kendo-svg-icons';
+import { useContext } from 'react';
+import { TransactionsContext } from 'contexts/TransactionsContext';
+import { calcBalance } from 'utils/calcBalance';
+import { formatCurrency } from 'utils/currencyFormatter';
+import styles from 'components/Summary/Summary.module.css';
 
 export default function Summary() {
   const { transactions } = useContext(TransactionsContext);
@@ -14,22 +14,22 @@ export default function Summary() {
   return (
     <div className={styles.container}>
       <SummaryCard
-        title={"Entradas"}
+        title={'Entradas'}
         icon={caretAltUpIcon}
         value={formatCurrency(inflows)}
-        bgColor={"green"}
+        bgColor={'green'}
       />
       <SummaryCard
-        title={"Saídas"}
+        title={'Saídas'}
         icon={caretAltDownIcon}
         value={formatCurrency(outflows)}
-        bgColor={"red"}
+        bgColor={'red'}
       />
       <SummaryCard
-        title={"Saldo"}
+        title={'Saldo'}
         icon={negativeBalance ? caretAltDownIcon : caretAltUpIcon}
         value={formatCurrency(balance)}
-        bgColor={negativeBalance ? "red" : "green"}
+        bgColor={negativeBalance ? 'red' : 'green'}
       />
     </div>
   );
