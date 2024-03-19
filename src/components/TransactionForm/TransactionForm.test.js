@@ -65,7 +65,7 @@ describe("TransactionForm", () => {
     expect(descriptionInput.value).toBe("Compras");
   });
 
-  it("should not submit form when description field is empty", async () => {
+  it("should not submit form when transaction description is empty", async () => {
     jest.spyOn(global, "alert").mockImplementation(() => {});
 
     renderComponent(loadTransactions);
@@ -84,7 +84,7 @@ describe("TransactionForm", () => {
     expect(loadTransactions).not.toHaveBeenCalled();
   });
 
-  it("should not submit form when value field is empty", async () => {
+  it("should not submit form when transaction value is empty", async () => {
     jest.spyOn(global, "alert").mockImplementation(() => {});
 
     renderComponent(loadTransactions);
@@ -103,7 +103,7 @@ describe("TransactionForm", () => {
     expect(loadTransactions).not.toHaveBeenCalled();
   });
 
-  it("should not submit form when type field is empty", async () => {
+  it("should not submit form when transaction type is empty", async () => {
     jest.spyOn(global, "alert").mockImplementation(() => {});
 
     renderComponent(loadTransactions);
@@ -120,5 +120,25 @@ describe("TransactionForm", () => {
     });
 
     expect(loadTransactions).not.toHaveBeenCalled();
+  });
+
+  it("should submit form when all fields are filled", async () => {
+    jest.spyOn(global, "alert").mockImplementation(() => {});
+
+    renderComponent(loadTransactions);
+
+    writeDescription();
+    writeValue();
+    selectType();
+    selectDate();
+    submitForm();
+
+    await waitFor(() => {
+      expect(global.alert).toHaveBeenCalledWith(
+        "Transação registrada com sucesso!"
+      );
+    });
+
+    expect(loadTransactions).toHaveBeenCalled();
   });
 });
