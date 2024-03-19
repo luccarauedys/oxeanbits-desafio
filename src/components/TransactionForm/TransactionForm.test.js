@@ -83,4 +83,23 @@ describe("TransactionForm", () => {
 
     expect(loadTransactions).not.toHaveBeenCalled();
   });
+
+  it("should not submit form when value field is empty", async () => {
+    jest.spyOn(global, "alert").mockImplementation(() => {});
+
+    renderComponent(loadTransactions);
+
+    writeDescription();
+    selectType();
+    selectDate();
+    submitForm();
+
+    await waitFor(() => {
+      expect(global.alert).toHaveBeenCalledWith(
+        "Preencha todos os campos para registrar uma nova transação."
+      );
+    });
+
+    expect(loadTransactions).not.toHaveBeenCalled();
+  });
 });
